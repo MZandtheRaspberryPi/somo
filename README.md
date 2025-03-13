@@ -213,3 +213,30 @@ xx todo: make base_params and act_params as similar as possible
 
 `"l w h"` can be obtained using the utility function `spaced_str(geom_list)`, where `geom_list` is a list of floats: `[l,w,h]`.
 
+## Changes
+
+```
+Traceback (most recent call last):
+  File "/home/mz/robo_tentacle/learning/somogym/sample_trajectories/run_traj.py", line 248, in <module>
+    main()
+  File "/home/mz/robo_tentacle/learning/somogym/sample_trajectories/run_traj.py", line 237, in main
+    gen_expert_data(
+  File "/home/mz/robo_tentacle/learning/somogym/sample_trajectories/run_traj.py", line 69, in gen_expert_data
+    obs = env.reset(run_render=run_render)
+  File "/home/mz/robo_tentacle/learning/my_venv/lib/python3.10/site-packages/gym/wrappers/time_limit.py", line 25, in reset
+    return self.env.reset(**kwargs)
+  File "/home/mz/robo_tentacle/learning/somogym/environments/SomoEnv.py", line 391, in reset
+    self.step(start_action)
+  File "/home/mz/robo_tentacle/learning/somogym/environments/PlanarReaching/PlanarReaching.py", line 127, in step
+    obs, reward, done, info = super().step(action=action)
+  File "/home/mz/robo_tentacle/learning/somogym/environments/SomoEnv.py", line 228, in step
+    manipulator.apply_actuation_torques(
+  File "/home/mz/robo_tentacle/learning/my_venv/lib/python3.10/site-packages/somo/sm_continuum_manipulator.py", line 390, in apply_actuation_torques
+    if isinstance(act_torque, (np.float, np.float32, np.float64)):
+  File "/home/mz/robo_tentacle/learning/my_venv/lib/python3.10/site-packages/numpy/__init__.py", line 397, in __getattr__
+    raise AttributeError(__former_attrs__[attr], name=None)
+AttributeError: module 'numpy' has no attribute 'float'.
+`np.float` was a deprecated alias for the builtin `float`. To avoid this error in existing code, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
+The aliases was originally deprecated in NumPy 1.20; for more details and guidance see the original release note at:
+    https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+```
